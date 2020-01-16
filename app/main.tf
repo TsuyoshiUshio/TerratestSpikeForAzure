@@ -1,4 +1,4 @@
-resource "helm_release" "nginx" {
-    name = "my-nginx"
-    chart = "nginx"
+resource "helm_release" "wordpress" {
+    name = "my-wordpress"
+    chart = "stable/wordpress"
 }

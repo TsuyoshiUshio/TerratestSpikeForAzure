@@ -12,7 +12,7 @@ import (
 func TestAKSExample(t *testing.T) {
 	t.Parallel()
 	deployKubernetes(t)
-	deployHelmChart(t)
+	// deployHelmChart(t)
 }
 
 func deployKubernetes(t *testing.T) {

@@ -3,3 +3,7 @@ provider "helm" {
       config_path = "../cluster/kubeconfig"
   }
 }
+
+terraform {
+    backend "azurerm" {}
+}
