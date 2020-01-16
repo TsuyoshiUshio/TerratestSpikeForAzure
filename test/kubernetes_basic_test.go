@@ -35,10 +35,10 @@ func TestKubernetesBasicExampleServiceCheck(t *testing.T) {
 
 	k8s.CreateNamespace(t, options, namespaceName)
 	// ... and make sure to delete the namespace at the end of the test
-	// defer k8s.DeleteNamespace(t, options, namespaceName)
+	defer k8s.DeleteNamespace(t, options, namespaceName)
 
 	// At the end of the test, run `kubectl delete -f RESOURCE_CONFIG` to clean up any resources that were created.
-	// defer k8s.KubectlDelete(t, options, kubeResourcePath)
+	defer k8s.KubectlDelete(t, options, kubeResourcePath)
 
 	// This will run `kubectl apply -f RESOURCE_CONFIG` and fail the test if there are any errors
 	k8s.KubectlApply(t, options, kubeResourcePath)
