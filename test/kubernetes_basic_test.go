@@ -45,18 +45,11 @@ func TestKubernetesBasicExampleServiceCheck(t *testing.T) {
 
 	// This will wait up to 10 seconds for the service to become available, to ensure that we can access it.
 	// k8s.WaitUntilServiceAvailable(t, options, "nginx-service", 10, 1*time.Second)
-
+	WaitUntilServiceExternalIPsAvailable(t, options, "nginx-service", 10, 20*time.Second)
 	// Now we verify that the service will successfully boot and start serving requests
-	var endpoint string
-	for i := 0; i < 30; i++ {
-		time.Sleep(20 * time.Second)
-		service := k8s.GetService(t, options, "nginx-service")
-		if len(service.Status.LoadBalancer.Ingress) != 0 {
-			endpoint = service.Status.LoadBalancer.Ingress[0].IP
-			break
-		}
+	service := k8s.GetService(t, options, "nginx-service")
+	endpoint := service.Status.LoadBalancer.Ingress[0].IP
 
-	}
 	// endpoint := k8s.GetServiceEndpoint(t, options, service, 80)
 
 	// Setup a TLS configuration to submit with the helper, a blank struct is acceptable
