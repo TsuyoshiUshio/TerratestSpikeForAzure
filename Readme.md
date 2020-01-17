@@ -73,6 +73,7 @@ $ az group create -n $RESOURCE_GROUP -l westus
 $ az storage account create -n $STORAGE_ACCOUNT_NAME -g $RESOURCE_GROUP -l westus
 $ AZURE_STORAGE_KEY=$(az.cmd storage account keys list --account-name tsushistorageaccount --resource-group MyResourceGroup | jq -r .[0].value)
 $ az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME --account-key "$AZURE_STORAGE_KEY"
+```
 
 ## Edit Backend config
 
