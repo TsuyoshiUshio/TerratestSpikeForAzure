@@ -11,9 +11,9 @@ For the Cloud agnostic terratest Getting Started, You can refer:
 This repo introduces several samples: 
 
 * [terraform AKS deployment](#terraform-AKS-deployment) 
-* kubernetes basic
-* kubernetes rbac
-* helm 
+* [kubernetes basic](#kubernetes-basic)
+* [kubernetes rbac](#kubernetes-rbac)
+* [helm](#helm) 
 
 For the kubernetes basic, rbac, and helm are based on the original repo's sample. The original sample seems using NodePort with AWS enviornment. I switch the sample to LoadBalancer and change the code. 
 
