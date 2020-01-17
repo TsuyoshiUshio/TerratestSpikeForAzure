@@ -38,7 +38,7 @@ func NewAuthorizer() (*autorest.Authorizer, error) {
 
 // GetManagedCluster will return ContainerService
 func GetManagedCluster(resourceGroupName, clusterName string) (*containerservice.ManagedCluster, error) {
-	client, err := GetManagedClustersClient(os.Getenv("SUBSCRIPTION_ID"))
+	client, err := GetManagedClustersClient(os.Getenv("ARM_SUBSCRIPTION_ID"))
 	if err != nil {
 		return nil, err
 	}
