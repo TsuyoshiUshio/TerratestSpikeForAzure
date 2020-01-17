@@ -13,7 +13,7 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "helm-basic-example.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-  type: NodePort
+  type: LoadBalancer
   ports:
   - protocol: TCP
     targetPort: 80
