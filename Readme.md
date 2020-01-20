@@ -14,6 +14,7 @@ This repo introduces several samples:
 * [kubernetes basic](#kubernetes-basic)
 * [kubernetes rbac](#kubernetes-rbac)
 * [helm](#helm) 
+* [ingress integration testing on RBAC cluster](#ingress-integration-testing-on-RBAC-cluster)
 
 For the kubernetes basic, rbac, and helm are based on the original repo's sample. The original sample seems using NodePort with AWS enviornment. I switch the sample to LoadBalancer and change the code. 
 
@@ -133,6 +134,6 @@ This sample is deploy helm chart(v2). It requires AKS cluster with [tiller](http
 $ go test -v -timeout 30m helm_test.go test_helper.go
 ```
 
-# Ingress integration testing on RBAC cluster. 
+# ingress integration testing on RBAC cluster
 
 This sample is a test in real world. I automated this tutorial [Create an ingress controller in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/ingress-basic) to understand terratest deeply. 
