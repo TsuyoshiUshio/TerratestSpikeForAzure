@@ -36,12 +36,31 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     }
 }
 
+resource "kubernetes_cluster_role_binding" "rbac" {
+  metadata {
+    name = "cluster-admin-management-binding"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "cluster-admin"
+  }
+  subject {
+    kind      = "User"
+    name      = "system:serviceaccount:kube-system:default"
+    api_group = "rbac.authorization.k8s.io"
+  }
+      depends_on = [
+        azurerm_kubernetes_cluster.k8s
+    ]
+}
+
 resource "helm_release" "wordpress" {
     name = "my-wordpress"
     chart = "stable/wordpress"
 
     depends_on = [
-        azurerm_kubernetes_cluster.k8s,
+        kubernetes_cluster_role_binding.rbac,
         local_file.kubeconfig
     ]
 }

@@ -1,18 +1,24 @@
 package test
 
 import (
+	"io/ioutil"
+
 	"github.com/Azure/azure-sdk-for-go/services/containerservice/mgmt/2019-11-01/containerservice"
 
 	"context"
 	"fmt"
+	"os"
+	"testing"
+	"time"
+
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure/auth"
 	"github.com/gruntwork-io/terratest/modules/k8s"
 	"github.com/gruntwork-io/terratest/modules/logger"
 	"github.com/gruntwork-io/terratest/modules/retry"
-	"os"
-	"testing"
-	"time"
+
+	gwErrors "github.com/gruntwork-io/gruntwork-cli/errors"
+	"github.com/gruntwork-io/gruntwork-cli/files"
 )
 
 // GetManagedClustersClient creates a client
@@ -69,4 +75,14 @@ func WaitUntilServiceExternalIPsAvailable(t *testing.T, options *k8s.KubectlOpti
 		},
 	)
 	logger.Logf(t, message)
+}
+
+func copyKubeConfigToTempE(t *testing.T, configPath string) (string, error) {
+	tmpConfig, err := ioutil.TempFile("", "")
+	if err != nil {
+		return "", gwErrors.WithStackTrace(err)
+	}
+	defer tmpConfig.Close()
+	err = files.CopyFile(configPath, tmpConfig.Name())
+	return tmpConfig.Name(), err
 }

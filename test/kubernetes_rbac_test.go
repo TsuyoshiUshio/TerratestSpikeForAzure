@@ -1,13 +1,10 @@
 package test
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
 
-	gwErrors "github.com/gruntwork-io/gruntwork-cli/errors"
-	"github.com/gruntwork-io/terratest/modules/files"
 	"github.com/gruntwork-io/terratest/modules/k8s"
 	"github.com/stretchr/testify/require"
 	authv1 "k8s.io/api/authorization/v1"
@@ -68,14 +65,4 @@ func TestKubernetesRBACExample(t *testing.T) {
 		Resource:  "pod",
 	}
 	require.True(t, k8s.CanIDo(t, serviceAccountKubectlOptions, namespaceListPodAction))
-}
-
-func copyKubeConfigToTempE(t *testing.T, configPath string) (string, error) {
-	tmpConfig, err := ioutil.TempFile("", "")
-	if err != nil {
-		return "", gwErrors.WithStackTrace(err)
-	}
-	defer tmpConfig.Close()
-	err = files.CopyFile(configPath, tmpConfig.Name())
-	return tmpConfig.Name(), err
 }
