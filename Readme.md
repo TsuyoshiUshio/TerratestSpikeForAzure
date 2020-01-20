@@ -115,7 +115,7 @@ If you already has a AKS cluster and `culster/kubeconfig` file, run test.
 $ go test -v -timeout 30m kubernetes_basic_test.go test_helper.go
 ```
 
-# kubernetse rbac
+# kubernetes rbac
 
 This sample requires AKS cluster with RBAC enabled. the target yaml file is under `kubernetes_rbac`. It requires AKS cluster and `cluster_rbac/kubeconfig` file
 
@@ -123,13 +123,7 @@ This sample requires AKS cluster with RBAC enabled. the target yaml file is unde
 $ go test -v timeout 30m kubernetes_rbac_test.go test_helper.go
 ```
 
-If you want to deploy `cluster_rbac` you can follow the instruction [terraform AKS deployment](#terraform-AKS-deployment) and instead of run the test, run terraform by your self.
-
-```bash
-$ cd cluster_rbac
-(modify cluster_rbac/variables.tf for changing name of cluster)
-$ terrafrom apply 
-```
+If you want to deploy `cluster_rbac` you can follow the instruction [terraform RBAC AKS deployment](cluster_rbac/Readme.md).
 
 # helm
 
@@ -139,4 +133,6 @@ This sample is deploy helm chart(v2). It requires AKS cluster with [tiller](http
 $ go test -v -timeout 30m helm_test.go test_helper.go
 ```
 
+# Ingress integration testing on RBAC cluster. 
 
+This sample is a test in real world. I automated this tutorial [Create an ingress controller in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/ingress-basic) to understand terratest deeply. 
