@@ -137,3 +137,7 @@ $ go test -v -timeout 30m helm_test.go test_helper.go
 # ingress integration testing on RBAC cluster
 
 This sample is a test in real world. I automated this tutorial [Create an ingress controller in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/ingress-basic) to understand terratest deeply. 
+
+If you want to deploy AKS cluster with RBAC you can follow the instruction [terraform RBAC AKS deployment](cluster_rbac/Readme.md).
+It requires, helm and kubectl is already installed also, AKS cluster for RBAC installed. 
+
