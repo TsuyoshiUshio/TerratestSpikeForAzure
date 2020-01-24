@@ -25,7 +25,7 @@ func TestAppGatewayExmple(t *testing.T) {
 			"application_gateway_name": expectedApplicationGatewayName,
 		},
 	}
-
+	defer terraform.Destroy(t, terraformOptions)
 	terraform.InitAndApply(t, terraformOptions)
 
 	// Unit Test
