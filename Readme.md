@@ -141,3 +141,18 @@ This sample is a test in real world. I automated this tutorial [Create an ingres
 If you want to deploy AKS cluster with RBAC you can follow the instruction [terraform RBAC AKS deployment](cluster_rbac/Readme.md).
 It requires, helm and kubectl is already installed also, AKS cluster for RBAC installed. 
 
+```bash
+$ go test -v timeout 30m kubernetes_ingress_integration_test.go test_helper.go
+```
+
+# application gateway testing
+
+This sample is a test against application gateway. It provisions backend VM and Application gateway. This sample doesn't require backend config. For this scenario, I extend timeout since it takes more than 30 min to destroy/create resources. 
+
+```bash
+$ export ARM_SUBSCRIPTION_ID={YOUR_SUBSCRIPTION_ID}
+$ go test -v -timeout 60m app_gateway_test.go test_helper.go
+```
+
+
+
